@@ -1,13 +1,50 @@
 var Application = {
 	initApplication: function () {
-		$(window).load('pageinit', '#page-one', function () {
-			Application.initShowPlayer();
-		})
 		$(document).on('click','#detail-player',function(){
 			var id_player =$(this).data('id_player');
 			Application.initShowDetailPlayer(id_player);
 		})
+
+		$(document).on('click','#btn-submit',function(){
+			
+			var id_player =$(this).data('id_player');
+			var name = document.getElementById('txt-name').value;
+			var email = document.getElementById('txt-email').value;
+			var pass = document.getElementById('txt-password').value;
+			var repass = document.getElementById('txt-password-confirm').value;
+
+			if(name === "" || email === "" || pass === "" || repass === "")
+				alert("isi semua field terlebih dahulu")
+			else if( pass === repass)
+				Application.register(name , email , pass);
+			else alert("password dan repassword tidak sama");
+		})
 	},
+
+	register : function(mUsername , mEmail , mPassword) {
+    $.ajax({
+      url: 'http://amamipro.site/service_insert.php',
+      type: 'POST',
+      data: { nama : mUsername, email : mEmail , password : mPassword} ,
+      beforeSend : function() {
+        $.mobile.loading('show', {
+          text : 'Loading',
+          textVisible : true
+        })
+      },
+      success : function(dataObject) {
+        console.log(dataObject)
+        if(dataObject.status === true){
+          window.location.replace("./index.html");
+				}
+				
+				if(dataObject === "error bang"){}
+      },
+      complete : function() {
+        $.mobile.loading('hide');
+      }
+    })
+  },
 
 	login : function(mEmail , mPassword) {
     $.ajax({
@@ -30,7 +67,8 @@ var Application = {
         $.mobile.loading('hide');
       }
     })
-  },
+	},
+	
 	search_nama : () => {
 		var nama = document.getElementById('search_nama').value;
 		//console.log(nama);
