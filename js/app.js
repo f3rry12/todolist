@@ -7,7 +7,6 @@ var Application = {
 			var id_player =$(this).data('id_player');
 			Application.initShowDetailPlayer(id_player);
 		})
-    })
 	},
 
 	login : function(mEmail , mPassword) {
