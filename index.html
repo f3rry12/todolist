@@ -25,8 +25,13 @@
         <label for="chck-rememberme">Remember me</label>
       </fieldset>
       <!-- //href="#dlg-invalid-credentials" data-rel="popup" data-transition="pop" -->
-      <a href="home.html" data-position-to="window" id="btn-submit" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5">Submit</a>
-      <p class="mc-top-margin-1-5"><a href="register.html">Belum punya akun? Daftar disini!</a></p>
+      <div data-position-to="window" id="btn-submit-login" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5">Submit</div>
+      <p class="mc-top-margin-1-5"><h4 id="toRegister">Belum punya akun? Daftar disini!</h4></p>
+      <script>
+        $(document).on('click','#toRegister',function(){
+          window.location.replace("./register.html");	
+    		})
+      </script>
       <div data-role="popup" id="dlg-invalid-credentials" data-dismissible="false" style="max-width:400px;">
         <div role="main" class="ui-content">
           <h3 class="mc-text-danger">Login Failed</h3>
@@ -36,6 +41,10 @@
       </div>
     </div><!-- /content -->
   </div><!-- /page -->
+  
+  <script>
+      Application.initApplication();
+    </script>
 </body>
 
 </html>
