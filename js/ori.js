@@ -5,3 +5,5 @@ $(document).ready(function(){
         $(this).css("background-color", "white");
     });
 });
+
+document.getElementById("namauser").innerHTML = " Selamat datang, Joel";
