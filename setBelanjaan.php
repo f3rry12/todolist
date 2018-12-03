@@ -8,7 +8,7 @@ $dbpassword = 'rahasia';
 $link = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
 date_default_timezone_set("Asia/Jakarta");
 if(isset($_POST['nama'])&& isset($_POST['harga'])&& isset($_POST['kuantitas'])&& isset($_POST['email'])){
-    $belanjaan=$_POST['nama'];
+    $nama=$_POST['nama'];
     $harga=$_POST['harga'];
     $kuantitas=$_POST['kuantitas'];
     $email=$_POST['email'];
