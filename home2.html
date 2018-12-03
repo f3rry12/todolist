@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ToDoList</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <link rel="stylesheet" href="css/ori.css" />
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="js/app.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+<!-- Start of first page -->
+<div data-role="page" id="first-page">
+	<div data-role="header" data-position="fixed">
+		<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+			<a data-icon="bars" data-iconpos="notext" data-role="button" href="#mypanel1">Menu</a>
+		</div>
+		<h1>Home </h1>
+	</div>
+	<!-- /header -->
+
+	<div data-role="panel" id="mypanel1" data-display="overlay">
+		<h3>Navigation</h3> This panel uses "overlay" display. Click outside to dismiss.
+		<ul data-role="listview">
+			<li><a href="#first-page">Home</a></li>
+			<li><a href="#second-page">Page 2</a></li>
+			<li><a href="#third-page">Page 3</a></li>
+		</ul>
+	</div>
+	<!-- /panel -->
+
+	<div role="main" class="ui-content">
+    <h1 id="namauser"></h1>
+    <div class="" style="display:flex ;flex-direction:row ">
+				<div class="card"  style="flex: 1 ; height: 150px; width: 50%; margin : 10px" >
+					<img src="img/assigment.png" alt="tugas" class="center">
+					<h5 class="center-text">tugas</h5>
+				</div>
+				<div class="card" style="flex : 1 ; height: 150px; width: 50%; margin : 10px">
+					<img src="img/shop.png" alt="tugas"  class="center">
+					<h5 class="center-text">belanja</h5>
+				</div>
+		</div><!-- /grid-a -->
+
+
+    <div class="" style="display:flex ;flex-direction:row ">
+				<div class="card"  style="flex: 1 ; height: 150px; width: 50%; margin : 10px" >
+					<img src="img/assigment.png" alt="tugas" class="center">
+					<h5 class="center-text">tugas</h5>
+				</div>
+				<div class="card" style="flex : 1 ; height: 150px; width: 50%; margin : 10px">
+					<img src="img/shop.png" alt="tugas"  class="center">
+					<h5 class="center-text">belanja</h5>
+				</div>
+    </div><!-- /grid-a -->
+
+
+	</div>
+	<!-- /content -->
+
+	<div data-role="footer" data-position="fixed">
+		<h4>Page Footer</h4>
+	</div>
+	<!-- /footer -->
+
+</div>
+<!-- /page -->
+
+<!-- Start of second page -->
+<div data-role="page" id="second-page">
+	<div data-role="header" data-position="fixed">
+		<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+			<a data-icon="bars" data-iconpos="notext" data-role="button" href="#mypanel2">Menu</a>
+		</div>
+		<h1>Second page </h1>
+	</div>
+	<!-- /header -->
+
+	<div data-role="panel" id="mypanel2" data-display="reveal">
+		<h3>Navigation</h3> This panel uses "reveal" display. Click outside to dismiss.
+		<ul data-role="listview">
+			<li><a href="#first-page">Page 1</a></li>
+			<li><a href="#second-page">Page 2</a></li>
+			<li><a href="#third-page">Page 3</a></li>
+		</ul>
+	</div>
+	<!-- /panel -->
+
+	<div role="main" class="ui-content">
+		<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam accumsan eros sed tortor ultrices, non dapibus sem pretium. Donec volutpat nibh mi, eu condimentum lacus commodo ut. Donec placerat, risus et efficitur ultricies, leo enim porta est, quis
+			laoreet turpis enim ac ligula. Aliquam consectetur est id est rhoncus iaculis. Quisque dignissim elementum suscipit. Nullam sodales arcu magna, et cursus sapien malesuada non. Ut id erat in ante efficitur dapibus. Sed augue eros, viverra vel interdum
+			fringilla, suscipit eget sapien.</p>
+
+		<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam accumsan eros sed tortor ultrices, non dapibus sem pretium. Donec volutpat nibh mi, eu condimentum lacus commodo ut. Donec placerat, risus et efficitur ultricies, leo enim porta est, quis
+			laoreet turpis enim ac ligula. Aliquam consectetur est id est rhoncus iaculis. Quisque dignissim elementum suscipit. Nullam sodales arcu magna, et cursus sapien malesuada non. Ut id erat in ante efficitur dapibus. Sed augue eros, viverra vel interdum
+			fringilla, suscipit eget sapien.</p>
+	</div>
+	<!-- /content -->
+
+	<div data-role="footer" data-position="fixed">
+		<h4>Page Footer</h4>
+	</div>
+	<!-- /footer -->
+
+</div>
+<!-- /page -->
+
+<!-- Start of third page -->
+<div data-role="page" id="third-page">
+	<div data-role="header" data-position="fixed">
+		<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+			<a data-icon="bars" data-iconpos="notext" data-role="button" href="#mypanel3">Menu</a>
+		</div>
+		<h1>Third page </h1>
+	</div>
+	<!-- /header -->
+
+	<div data-role="panel" id="mypanel3" data-display="push">
+		<h3>Navigation</h3> This panel uses "push" display. Click outside to dismiss.
+		<ul data-role="listview">
+			<li><a href="#first-page">Page 1</a></li>
+			<li><a href="#second-page">Page 2</a></li>
+			<li><a href="#third-page">Page 3</a></li>
+		</ul>
+	</div>
+	<!-- /panel -->
+
+	<div role="main" class="ui-content">
+		<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam accumsan eros sed tortor ultrices, non dapibus sem pretium. Donec volutpat nibh mi, eu condimentum lacus commodo ut. Donec placerat, risus et efficitur ultricies, leo enim porta est, quis
+			laoreet turpis enim ac ligula. Aliquam consectetur est id est rhoncus iaculis. Quisque dignissim elementum suscipit. Nullam sodales arcu magna, et cursus sapien malesuada non. Ut id erat in ante efficitur dapibus. Sed augue eros, viverra vel interdum
+			fringilla, suscipit eget sapien.</p>
+
+		<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam accumsan eros sed tortor ultrices, non dapibus sem pretium. Donec volutpat nibh mi, eu condimentum lacus commodo ut. Donec placerat, risus et efficitur ultricies, leo enim porta est, quis
+			laoreet turpis enim ac ligula. Aliquam consectetur est id est rhoncus iaculis. Quisque dignissim elementum suscipit. Nullam sodales arcu magna, et cursus sapien malesuada non. Ut id erat in ante efficitur dapibus. Sed augue eros, viverra vel interdum
+			fringilla, suscipit eget sapien.</p>
+	</div>
+	<!-- /content -->
+
+	<div data-role="footer" data-position="fixed">
+		<h4>Page Footer</h4>
+	</div>
+	<!-- /footer -->
+</div>
+<!-- /page -->
+
+  <script src="js/ori.js" type="text/javascript"></script>
+</body>
+
+</html>
