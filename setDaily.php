@@ -7,12 +7,14 @@ $dbpassword = 'rahasia';
 //$conn = mysqli_connect(HOST,USER,PASS,DB) or die('Unable to Connect');
 $link = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
 date_default_timezone_set("Asia/Jakarta");
-if(isset($_POST['aktivitas'])&& isset($_POST['email'])){
+if(isset($_POST['tgl'])&& isset($_POST['aktivitas'])&& isset($_POST['email'])){
+    $tgl=$_POST['tgl'];
     $aktivitas=$_POST['aktivitas'];
     $email=$_POST['email'];
     try{
-        $statement = $link->prepare('INSERT INTO daily (tgl,aktivitas,email)VALUES (now(), :aktivitas, :email)');
+        $statement = $link->prepare('INSERT INTO daily (tgl,aktivitas,email)VALUES (:tgl, :aktivitas, :email)');
         $statement->execute([
+            'tgl'          => $tgl,
             'aktivitas' => "$aktivitas",
             'email' => "$email",
         ]);
