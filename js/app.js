@@ -3,6 +3,9 @@ var gNama;
 
 var Application = {
   initApplication: function() {
+		Application.initShowPlayer();
+
+
 
 //register
 $(document).on('click', '#btn-submit', function() {
@@ -46,6 +49,35 @@ $(document).on('click', '#btn-submit-login', function() {
 })
 },
 
+//coba-coba
+initShowPlayer: function () {
+		$.ajax({
+			url : 'http://amamipro.site/service_coba.php',
+			type: 'get',
+			beforeSend:function(){
+				$.mobile.loading('show',{
+					text:'Please wait while retrieving data...',
+					textVisible:true
+				});
+			},
+			success:function(dataObject){
+				console.log(dataObject);
+				var appendList;
+				console.log(dataObject)
+								for (let i = 0; i < dataObject.length; i++) {
+										appendList = '<li><a href=#page-two?id='+dataObject[i].kolom1+
+																'"target="_self" id="detail-obt" data-namaobt="'+dataObject[i].kolom1+'">'+dataObject[i].kolom2+'</a></li>';
+																$('#list-todo').append(appendList);
+																$('#list-todo').listview('refresh');
+								}
+			},
+			complete:function(){
+				$.mobile.loading('hide');
+				$( '#list-todo' ).listview( "refresh" );
+			}
+		});
+
+	},
 //register
 register: function(mUsername, mEmail, mPassword) {
     console.log(mUsername + mEmail + mPassword)
@@ -114,7 +146,15 @@ register: function(mUsername, mEmail, mPassword) {
     })
   },
 
+
+
+
+
 };
+
+
+
+
 
 $(document).ready(function() {
   $(".card").hover(function() {
@@ -124,4 +164,5 @@ $(document).ready(function() {
   });
 });
 
-document.getElementById("namauser").innerHTML = " Selamat datang, Joel";
+document.getElementById("namauser").innerHTML = "Joel";
+// document.getElementById("wellcome").innerHTML = " Selamat datang, Joel";
