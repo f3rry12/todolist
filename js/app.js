@@ -4,6 +4,7 @@ var gNama;
 var Application = {
   initApplication: function() {
 
+//register
 $(document).on('click', '#btn-submit', function() {
   var name = document.getElementById('txt-name').value;
   var email = document.getElementById('txt-email').value;
@@ -29,6 +30,7 @@ $(document).on('click', '#btn-submit', function() {
   }
 })
 
+//login
 $(document).on('click', '#btn-submit-login', function() {
   var email = document.getElementById('txt-email').value;
   var pass = document.getElementById('txt-password').value;
@@ -44,6 +46,7 @@ $(document).on('click', '#btn-submit-login', function() {
 })
 },
 
+//register
 register: function(mUsername, mEmail, mPassword) {
     console.log(mUsername + mEmail + mPassword)
     $.ajax({
@@ -82,6 +85,8 @@ register: function(mUsername, mEmail, mPassword) {
     })
   },
 
+
+//login
   login: function(mEmail, mPassword) {
     $.ajax({
       url: 'http://amamipro.site/service_login.php',

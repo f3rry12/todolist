@@ -38,14 +38,13 @@
 	<div role="main" class="ui-content">
     <h1 id="namauser"></h1>
     <div class="" style="display:flex ;flex-direction:row ">
-				<div class="card"  style="flex: 1 ; height: 150px; width: 50%; margin : 10px" >
-					<img src="img/assigment.png" alt="tugas" class="center">
-					<h5 class="center-text">tugas</h5>
+      <a href="#second-page">
+				<div class="card"  style="flex: 1 ; height: 150px; width: 50%; margin : 10px " >
+					<img src="img/assigment.png" alt="tugas" class="center" style="height: 50px; width: 50px;">
+					<h5 class="center-text">daily</h5>
+          </a>
 				</div>
-				<div class="card" style="flex : 1 ; height: 150px; width: 50%; margin : 10px">
-					<img src="img/shop.png" alt="tugas"  class="center">
-					<h5 class="center-text">belanja</h5>
-				</div>
+
 		</div><!-- /grid-a -->
 
 
@@ -91,10 +90,9 @@
 		</ul>
 	</div>
 	<!-- /panel -->
-
+<ul id="list-todo" data-role="listview"data-inset = "true">
 	<div role="main" class="ui-content"  style="display: flex ; flexDirection : column">
 
-	<ol id="list-todo" data-role="listview"data-inset = "true"></ol>
 	<div data-role="collapsible-set" data-theme="b" data-content-theme="b">
         <div data-role="collapsible"data-collapsed-icon="navigation"  data-expanded-icon="navigation" data-collapsed="false">
           <h3>Harus Pergi ke stasiun</h3>
@@ -124,7 +122,7 @@
 		</div>
         </div>
       </div>
-	</ol>
+</ul>
 	<div role="main" class="ui-content"  style="display: flex ; flexDirection : column">
 		<a href="#popUpTambahSecond" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-edit" style="position:absolute; top:0; right:0;"data-rel="popup">+</a>
 		<div data-role="popup" id="popUpTambahSecond" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="padding:20px 20px 20px 20px; max-width:400px;">
