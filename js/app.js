@@ -165,4 +165,4 @@ $(document).ready(function() {
 });
 
 document.getElementById("namauser").innerHTML = "Joel";
-// document.getElementById("wellcome").innerHTML = " Selamat datang, Joel";
+document.getElementById("wellcome").innerHTML = " Selamat datang, Joel";
