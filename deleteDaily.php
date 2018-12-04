@@ -7,14 +7,14 @@ $dbpassword = 'rahasia';
 $link = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
 date_default_timezone_set("Asia/Jakarta");
 try{
-    $email=$_POST['email'];
-    $statement = $link->prepare('SELECT tugas.id,tugas.matkul,tugas.deskripsi,tugas.tenggat from user join tugas on user.email=tugas.email where user.email= :email');
+    $id=$_POST['id'];
+    $statement = $link->prepare('delete from daily where id=:id');
     $statement->execute([
-        'email' => "$email",
+        'id' => "$id",
     ]);
-    $data=$statement->fetchAll(PDO::FETCH_ASSOC);
-    echo json_encode($data);
+   echo "Success";
 }catch(Exception $e){
     echo "Data Not Found";
 }
+
 ?>
