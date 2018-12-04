@@ -1,6 +1,8 @@
 var gEmail;
 var gNama;
 
+let dataDaily = []
+
 var Application = {
   initApplication: function() {
     
@@ -59,10 +61,29 @@ var Application = {
     })
 
     $(document).on('click', '#detail-daily', function() {
-      var id = $(this).data('id');
-      document.getElementById("txt-todo").value = id;    
-      console.log("========================"+id)
+      var id = $(this).data('namaobt');
+      
+      let index = 0
+      for (let i in data){
+        
+        if (data[i].id == id) {
+          index = i
+          break
+        }
+      }
+      document.getElementById("txt-todo-detail").value = id;    
+      console.log("clic detail dayly"+ index)
+        document.getElementById("txt-todo-detail").value = data[index].aktivitas;    
+        
 
+    })
+      
+    $(document).on('click', '#updateDailyTodo', function() {
+      console.log("update")
+    })
+
+    $(document).on('click', '#DelateDailyTodo', function() {
+      console.log("delete")
     })
 
     $(document).on('pageinit', '#first-page', function() {
@@ -95,6 +116,7 @@ var Application = {
           console.log(dataObject)
           if (dataObject == "Success") {
             window.location.replace("#homeDailyTodo");
+            data = dataObject;
             Application.initShowToDoList()
           } else {
             Application.showSnackbar("Tambah daily todo gagal");
@@ -128,8 +150,9 @@ var Application = {
         var obj = JSON.parse(dataObject);
         console.log(obj);
       								for (let i = 0; i < obj.length; i++) {
-                  console.log(obj[i]);appendList = '<li><a href=#detailTodoDaily?id='+obj[i].id+
-                  '"target="_self" id="detail-daily" data-namaobt="'+obj[i].tgl+'"><h2>'+obj[i].tgl+'</h2><p>'+obj[i].aktivitas+'</p></a></li>';
+                  console.log("id  "+obj[i].id);
+                  appendList = '<li><a href=#detailTodoDaily?id='+obj[i].id+
+                  '"target="_self" id="detail-daily" data-namaobt="'+obj[i].id+'"><h2>'+obj[i].tgl+'</h2><p>'+obj[i].aktivitas+'</p></a></li>';
                   $('#list-todo').append(appendList);
                   $('#list-todo').listview('refresh');
 								}

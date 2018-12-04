@@ -36,7 +36,7 @@
 
   <a href="#pageInsertDaily">
     <div data-role="footer" data-position="fixed" id="tambahDailyTodo">
-        <h2>Tambah Daily Todo</h2>
+        <h2>Detail Daily Todo</h2>
     </div>
   </a>
 
@@ -48,13 +48,13 @@
 
 <!-- Start of second page  buat detail-->
 <div data-role="page" id="pageInsertDaily" data-theme="a">
-      <img src="img/back.png" id="back" alt="back" style="width:40px; margin:10px;"></img>
+    <img src="img/back.png" id="back" alt="back" style="width:40px; margin:10px;"></img>
       <div role="main" class="ui-content">
         <h4>Tambah Daily Todo</h4>
         <label for="txt-last-name">Aktivitas</label>
-        <input type="text" name="txt-todo" id="txt-todo" value=""/>
+        <input type="text" name="txt-todo-detail" id="txt-todo" value=""/>
         <label for="txt-email">Dilakukan Tanggal</label>
-        <input type="text" name="txt-email" id="txt-tgl" value=""/>
+        <input type="text" name="txt-email-detail" id="txt-tgl" value=""/>
         <div data-position-to="window" id="submitDailyTodo" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" style="margin-top : 30px;">Submit</div>
         <div data-role="popup" id="dlg-sign-up-sent" data-dismissible="false" style="max-width:400px;">
           <div data-role="header">
@@ -68,13 +68,13 @@
 
 <!-- Start of third page buat edit-->
 <div data-role="page" id="detailTodoDaily" data-theme="a">
-    <img src="img/back.png" id="backToDailyHome" alt="back" style="width:40px; margin:10px;"></img>
+      <img src="img/back.png" id="back" alt="back" style="width:40px; margin:10px;"></img>
     <div role="main" class="ui-content">
-      <h4>Tambah Daily Todo</h4>
+      <h4>Detail Daily Todo</h4>
       <label for="txt-last-name">Aktivitas</label>
-      <input type="text" name="txt-todo" id="txt-todo" value=""/>
+      <input type="text" name="txt-todo" id="txt-todo-detail" value=""/>
       <label for="txt-email">Dilakukan Tanggal</label>
-      <input type="text" name="txt-email" id="txt-tgl" value=""/>
+      <input type="text" name="txt-email" id="txt-tgl-detail" value=""/>
       <div data-position-to="window" id="updateDailyTodo" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" style="margin-top : 30px;">Update</div>
       <div data-position-to="window" id="DelateDailyTodo" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" style="margin-top : 30px;">Delete</div>
       <div data-role="popup" id="dlg-sign-up-sent" data-dismissible="false" style="max-width:400px;">
