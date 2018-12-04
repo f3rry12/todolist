@@ -8,7 +8,7 @@ $link = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
 date_default_timezone_set("Asia/Jakarta");
 try{
     $email=$_POST['email'];
-    $statement = $link->prepare('SELECT * from user join tugas on user.email=tugas.email where email= :email');
+    $statement = $link->prepare('SELECT tugas.matkul,tugas.deskripsi,tugas.tenggat from user join tugas on user.email=tugas.email where user.email= :email');
     $statement->execute([
         'email' => "$email",
     ]);
