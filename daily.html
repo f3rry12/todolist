@@ -3,7 +3,7 @@
 
 <head>
   <title>ToDoList</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
   <link rel="stylesheet" href="css/ori.css" />
@@ -11,7 +11,6 @@
   <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
   <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-
 </head>
 
 <body>
@@ -27,7 +26,7 @@
 	<div data-role="panel" id="mypanel1" data-display="overlay">
     <h1 id="namauser">nama</h1>
 		<ul data-role="listview">
-			<li><a href="home.html">Beranda</a></li>
+			<li><a id="clickHome">Beranda</a></li>
 			<li><a href="daily.html">Daily</a></li>
 			<li><a href="tugas.html">Tugas</a></li>
       <li><a href="belanja.html">Daftar Belanja</a></li>
@@ -49,13 +48,13 @@
 
 <!-- Start of second page  buat detail-->
 <div data-role="page" id="pageInsertDaily" data-theme="a">
-      <img src="img/back.png" id="back" alt="back" style="width:40px; margin:10px;">
+      <img src="img/back.png" id="back" alt="back" style="width:40px; margin:10px;"></img>
       <div role="main" class="ui-content">
         <h4>Tambah Daily Todo</h4>
         <label for="txt-last-name">Aktivitas</label>
-        <input type="text" name="txt-todo" id="txt-todo" value="">
+        <input type="text" name="txt-todo" id="txt-todo" value=""/>
         <label for="txt-email">Dilakukan Tanggal</label>
-        <input type="text" name="txt-email" id="txt-tgl" value="">
+        <input type="text" name="txt-email" id="txt-tgl" value=""/>
         <div data-position-to="window" id="submitDailyTodo" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" style="margin-top : 30px;">Submit</div>
         <div data-role="popup" id="dlg-sign-up-sent" data-dismissible="false" style="max-width:400px;">
           <div data-role="header">
@@ -68,28 +67,24 @@
 </div><!-- /page -->
 
 <!-- Start of third page buat edit-->
-<div data-role="page" id="page-three" data-theme="a">
-    <div data-role="header">
-        <h1>Detail</h1>
-    </div><!-- /header -->
-
+<div data-role="page" id="detailTodoDaily" data-theme="a">
+    <img src="img/back.png" id="backToDailyHome" alt="back" style="width:40px; margin:10px;"></img>
     <div role="main" class="ui-content">
-        <table data-role="table" data-mode="reflow" class="ul-responsive" id="table-detailObt">
-            <thead>
-                <tr>
-                    <th data-priority="1">Nama</th>
-                    <th data-priority="2">Gejala</th>
-                    <th data-priority="3">Jenis Obat</th>
-                </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
-        <a href="#page-one" class="ui-btn" onclick="back()">Kembali</a>
+      <h4>Tambah Daily Todo</h4>
+      <label for="txt-last-name">Aktivitas</label>
+      <input type="text" name="txt-todo" id="txt-todo" value=""/>
+      <label for="txt-email">Dilakukan Tanggal</label>
+      <input type="text" name="txt-email" id="txt-tgl" value=""/>
+      <div data-position-to="window" id="updateDailyTodo" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" style="margin-top : 30px;">Update</div>
+      <div data-position-to="window" id="DelateDailyTodo" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" style="margin-top : 30px;">Delete</div>
+      <div data-role="popup" id="dlg-sign-up-sent" data-dismissible="false" style="max-width:400px;">
+        <div data-role="header">
+          <h1>Almost done...</h1>
+        </div>
+      </div>
     </div><!-- /content -->
-    
     <div id="snackbar">Some text some message..</div>
+  
     
 </div><!-- /page -->
 
