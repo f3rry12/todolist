@@ -7,12 +7,14 @@ $dbpassword = 'rahasia';
 $link = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
 date_default_timezone_set("Asia/Jakarta");
 try{
-    $statement = $link->prepare('SELECT * from user join tugas on user.email=tugas.email');
-    $statement->execute();
+    $email=$_POST['email'];
+    $statement = $link->prepare('SELECT * from user join tugas on user.email=tugas.email where email= :email');
+    $statement->execute([
+        'email' => "$email",
+    ]);
     $data=$statement->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($data);
 }catch(Exception $e){
     echo "Data Not Found";
 }
-
 ?>
