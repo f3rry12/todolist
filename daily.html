@@ -15,7 +15,7 @@
 
 <body>
 <!-- Start of first page -->
-<div data-role="page" id="page-one">
+<div data-role="page" id="homeDailyTodo">
 	<div data-role="header" data-position="fixed">
 		<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
 			<a data-icon="bars" data-iconpos="notext" data-role="button" href="#mypanel1">Menu</a>
@@ -34,34 +34,36 @@
 	</div>
 	<!-- /panel -->
 
+  <a href="#pageInsertDaily">
+    <div data-role="footer" data-position="fixed" id="tambahDailyTodo">
+        <h2>Tambah Daily Todo</h2>
+    </div>
+  </a>
 
 
-    <div role="main" class="ui-content">
-        <ul id="list-todo" data-role="listview" data-inset="true" data-filter="true"></ul>
-    </div><!-- /content -->
+  <div role="main" class="ui-content">
+      <ul id="list-todo" data-role="listview" data-inset="true" data-filter="true"></ul>
+  </div><!-- /content -->
 </div>
 
 <!-- Start of second page  buat detail-->
-<div data-role="page" id="page-two" data-theme="a">
-    <div data-role="header">
-        <h1>Detail</h1>
-    </div><!-- /header -->
-
-    <div role="main" class="ui-content">
-        <table data-role="table" data-mode="reflow" class="ul-responsive" id="table-detailObt">
-            <thead>
-                <tr>
-                    <th data-priority="1">Nama</th>
-                    <th data-priority="2">Gejala</th>
-                    <th data-priority="3">Jenis Obat</th>
-                </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
-        <a href="#page-one" class="ui-btn" onclick="back()">Kembali</a>
-    </div><!-- /content -->
+<div data-role="page" id="pageInsertDaily" data-theme="a">
+      <img src="img/back.png" id="back" alt="back" style="width:40px; margin:10px;">
+      <div role="main" class="ui-content">
+        <h4>Tambah Daily Todo</h4>
+        <label for="txt-last-name">Hal Todo</label>
+        <input type="text" name="txt-todo" id="txt-name" value="">
+        <label for="txt-email">Dilakukan Tanggal</label>
+        <input type="text" name="txt-email" id="txt-email" value="">
+        <div data-position-to="window" id="submitDailyTodo" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" style="margin-top : 30px;">Submit</div>
+        <div data-role="popup" id="dlg-sign-up-sent" data-dismissible="false" style="max-width:400px;">
+          <div data-role="header">
+            <h1>Almost done...</h1>
+          </div>
+        </div>
+      </div><!-- /content -->
+      <div id="snackbar">Some text some message..</div>
+    
 </div><!-- /page -->
 
 <!-- Start of third page buat edit-->
@@ -85,33 +87,10 @@
         </table>
         <a href="#page-one" class="ui-btn" onclick="back()">Kembali</a>
     </div><!-- /content -->
+    
+    <div id="snackbar">Some text some message..</div>
+    
 </div><!-- /page -->
-
-<!-- Start of fourth page buat tambah-->
-<div data-role="page" id="page-three" data-theme="a">
-    <div data-role="header">
-        <h1>Detail</h1>
-    </div><!-- /header -->
-
-    <div role="main" class="ui-content">
-        <table data-role="table" data-mode="reflow" class="ul-responsive" id="table-detailObt">
-            <thead>
-                <tr>
-                    <th data-priority="1">Nama</th>
-                    <th data-priority="2">Gejala</th>
-                    <th data-priority="3">Jenis Obat</th>
-                </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
-        <a href="#page-one" class="ui-btn" onclick="back()">Kembali</a>
-    </div><!-- /content -->
-</div><!-- /page -->
-
-
-
 
   <script src="js/app.js" type="text/javascript"></script>
   <script>
@@ -119,7 +98,8 @@
   </script>
 
   <script>
-    Application.initShowPlayer()
+    Application.initShowToDoList()
+    Application.initDailyTodo()
   </script>
 </body>
 

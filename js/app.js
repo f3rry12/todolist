@@ -3,6 +3,9 @@ var gNama;
 
 var Application = {
   initApplication: function() {
+    
+    $.support.cors = true;
+    $.mobile.allowCrossDomainPages = true;
     // Application.initShowPlayer();
     gEmail = localStorage['gEmail'] || null;
     gNama = localStorage['gNama'] || null;   
@@ -13,35 +16,67 @@ var Application = {
     $("#wellcome").html(" Selamat datang, " + gNama);
 
 
-  //register
-  $(document).on('click', '#btn-submit', function() {
-    var name = document.getElementById('txt-name').value;
-    var email = document.getElementById('txt-email').value;
-    var pass = document.getElementById('txt-password').value;
-    var repass = document.getElementById('txt-password-confirm').value;
+    //register
+    $(document).on('click', '#btn-submit', function() {
+      var name = document.getElementById('txt-name').value;
+      var email = document.getElementById('txt-email').value;
+      var pass = document.getElementById('txt-password').value;
+      var repass = document.getElementById('txt-password-confirm').value;
 
-    if (name === "" || email === "" || pass === "" || repass === "") {
-      Application.showSnackbar("isi semua field terlebih dahulu");
-    } else if (pass === repass)
-      Application.register(name, email, pass);
-    else {
-      Application.showSnackbar("password dan repassword tidak sama");
-    }
-  })
+      if (name === "" || email === "" || pass === "" || repass === "") {
+        Application.showSnackbar("isi semua field terlebih dahulu");
+      } else if (pass === repass)
+        Application.register(name, email, pass);
+      else {
+        Application.showSnackbar("password dan repassword tidak sama");
+      }
+    })
 
-  //login
-  $(document).on('click', '#btn-submit-login', function() {
-    var email = document.getElementById('txt-email').value;
-    var pass = document.getElementById('txt-password').value;
+    //login
+    $(document).on('click', '#btn-submit-login', function() {
+      var email = document.getElementById('txt-email').value;
+      var pass = document.getElementById('txt-password').value;
 
-    if (email === "" || pass === "") {
-      Application.showSnackbar("isi semua field terlebih dahulu");
-    } else Application.login(email, pass);
-  })
+      if (email === "" || pass === "") {
+        Application.showSnackbar("isi semua field terlebih dahulu");
+      } else Application.login(email, pass);
+    })
+  },
+
+  initDailyTodo : function () {
+    $(document).on('click', '#submitDailyTodo', function() {
+      var todo = document.getElementById('txt-name').value;
+      var waktu = document.getElementById('txt-name').value;
+      $.ajax({
+        url: 'http://amamipro.site/service_login.php',
+        type: 'POST',
+        data: {
+          email: mEmail,
+          password: mPassword
+        },
+        beforeSend: function() {
+          $.mobile.loading('show', {
+            text: 'Loading',
+            textVisible: true
+          })
+        },
+        success: function(dataObject) {
+          console.log(dataObject)
+          if (dataObject == "username or password incorrect") {
+            Application.showSnackbar("Tambah daily todo gagal");
+          } else {
+            window.location.replace("#homeDailyTodo");
+          }
+        },
+        complete: function() {
+          $.mobile.loading('hide');
+        }
+      })
+    })
   },
 
   //coba-coba
-  initShowPlayer: function () {
+  initShowToDoList: function () {
 		$.ajax({
 			url : 'http://amamipro.site/service_coba.php',
 			type: 'get',
@@ -68,7 +103,8 @@ var Application = {
 			}
 		});
 
-	},
+  },
+  
   //register
   register: function(mUsername, mEmail, mPassword) {
       console.log(mUsername + mEmail + mPassword)
