@@ -3,6 +3,8 @@ var gNama;
 
 let dataDaily = []
 
+var id;
+
 var Application = {
   initApplication: function() {
     
@@ -61,7 +63,7 @@ var Application = {
     })
 
     $(document).on('click', '#detail-daily', function() {
-      var id = $(this).data('namaobt');
+      id = $(this).data('namaobt');
       
       let index = 0
       for (let i in data){
@@ -72,18 +74,82 @@ var Application = {
         }
       }
       document.getElementById("txt-todo-detail").value = id;    
-      console.log("clic detail dayly"+ index)
+      console.log("clic detail dayly"+ data[index].aktivitas)
         document.getElementById("txt-todo-detail").value = data[index].aktivitas;    
         
 
     })
       
     $(document).on('click', '#updateDailyTodo', function() {
-      console.log("update")
+      console.log("update" + id)
+      var mTodo = document.getElementById('txt-todo-detail').value;
+      var mTgl = document.getElementById('txt-tgl-detail').value;
+      console.log("========================= init show" + id)
+      console.log("========================= init show" + gEmail)
+      console.log("========================= init show" + mTgl)
+      console.log("========================= init show" + mTodo)
+      $.ajax({
+        url: 'http://amamipro.site/updateDaily.php',
+        type: 'POST',
+        data: {
+          id: id,
+          email: gEmail,
+          tgl : mTgl,
+          aktivitas: mTodo
+        },
+        beforeSend: function() {
+          $.mobile.loading('show', {
+            text: 'Loading',
+            textVisible: true
+          })
+        },
+        success: function(dataObject) {console.log(dataObject)
+          if (dataObject == "Success") {
+            console.log("true")
+            
+            window.location.replace("#homeDailyTodo");
+            Application.initShowToDoList()
+          } else {
+            Application.showSnackbar("update gagal");
+          }
+        },
+        complete: function() {
+          $.mobile.loading('hide');
+          $( '#list-todo' ).listview( "refresh" );
+        }
+      })
     })
 
     $(document).on('click', '#DelateDailyTodo', function() {
-      console.log("delete")
+      console.log("delete" + id)
+      $.ajax({
+        url: 'http://amamipro.site/deleteDaily.php',
+        type: 'POST',
+        data: {
+          id: id,
+          email: gEmail
+        },
+        beforeSend: function() {
+          $.mobile.loading('show', {
+            text: 'Loading',
+            textVisible: true
+          })
+        },
+        success: function(dataObject) {console.log(dataObject)
+          if (dataObject == "Success") {
+            console.log("true")
+            
+            window.location.replace("#homeDailyTodo");
+            Application.initShowToDoList()
+          } else {
+            Application.showSnackbar("delete gagal");
+          }
+        },
+        complete: function() {
+          $.mobile.loading('hide');
+          $( '#list-todo' ).listview( "refresh" );
+        }
+      })
     })
 
     $(document).on('pageinit', '#first-page', function() {
@@ -116,7 +182,6 @@ var Application = {
           console.log(dataObject)
           if (dataObject == "Success") {
             window.location.replace("#homeDailyTodo");
-            data = dataObject;
             Application.initShowToDoList()
           } else {
             Application.showSnackbar("Tambah daily todo gagal");
@@ -148,9 +213,12 @@ var Application = {
 				var appendList;
         var x;
         var obj = JSON.parse(dataObject);
+        $('#list-todo').empty();
+        $('#list-todo').listview('refresh');
         console.log(obj);
       								for (let i = 0; i < obj.length; i++) {
-                  console.log("id  "+obj[i].id);
+                  console.log("==================================== update list view "+obj[i].aktivitas);
+                  data = obj;
                   appendList = '<li><a href=#detailTodoDaily?id='+obj[i].id+
                   '"target="_self" id="detail-daily" data-namaobt="'+obj[i].id+'"><h2>'+obj[i].tgl+'</h2><p>'+obj[i].aktivitas+'</p></a></li>';
                   $('#list-todo').append(appendList);
