@@ -45,14 +45,16 @@ var Application = {
 
   initDailyTodo : function () {
     $(document).on('click', '#submitDailyTodo', function() {
-      var todo = document.getElementById('txt-name').value;
-      var waktu = document.getElementById('txt-name').value;
+      console.log(gEmail);
+      var mTodo = document.getElementById('txt-todo').value;
+      var mTgl = document.getElementById('txt-tgl').value;
       $.ajax({
-        url: 'http://amamipro.site/service_login.php',
+        url: 'http://amamipro.site/setDaily.php',
         type: 'POST',
         data: {
-          email: mEmail,
-          password: mPassword
+          email: gEmail,
+          tgl : mTgl,
+          aktivitas: mTodo
         },
         beforeSend: function() {
           $.mobile.loading('show', {
@@ -62,10 +64,11 @@ var Application = {
         },
         success: function(dataObject) {
           console.log(dataObject)
-          if (dataObject == "username or password incorrect") {
-            Application.showSnackbar("Tambah daily todo gagal");
-          } else {
+          if (dataObject == "Success") {
             window.location.replace("#homeDailyTodo");
+            Application.initShowToDoList()
+          } else {
+            Application.showSnackbar("Tambah daily todo gagal");
           }
         },
         complete: function() {
@@ -77,9 +80,12 @@ var Application = {
 
   //coba-coba
   initShowToDoList: function () {
+    console.log(gEmail);
 		$.ajax({
-			url : 'http://amamipro.site/service_coba.php',
-			type: 'get',
+			url : 'http://amamipro.site/getAktivitas.php',
+      data: {
+        email: gEmail,
+      },
 			beforeSend:function(){
 				$.mobile.loading('show',{
 					text:'Please wait while retrieving data...',
@@ -87,12 +93,16 @@ var Application = {
 				});
 			},
 			success:function(dataObject){
-				console.log(dataObject);
+        console.log(dataObject);
+        
+
+        var obj = JSON.parse(dataObject);
+        
 				var appendList;
 				console.log(dataObject)
-								for (let i = 0; i < dataObject.length; i++) {
-										appendList = '<li><a href=#page-two?id='+dataObject[i].kolom1+
-																'"target="_self" id="detail-obt" data-namaobt="'+dataObject[i].kolom1+'">'+dataObject[i].kolom2+'</a></li>';
+								for (let i = 0; i < obj.length; i++) {
+										appendList = '<li><a href=#page-two?id='+obj[i].kolom1+
+																'"target="_self" id="detail-obt" data-namaobt="'+obj[i].kolom1+'">'+obj[i].kolom2+'</a></li>';
 																$('#list-todo').append(appendList);
 																$('#list-todo').listview('refresh');
 								}
