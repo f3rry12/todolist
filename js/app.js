@@ -10,7 +10,7 @@ var Application = {
     console.log(gEmail)
     console.log(gNama)
 
-    $("#wellcome").html(" Selamat datang," + gEmail);
+    $("#wellcome").html(" Selamat datang, " + gNama);
 
 
   //register
@@ -21,21 +21,11 @@ var Application = {
     var repass = document.getElementById('txt-password-confirm').value;
 
     if (name === "" || email === "" || pass === "" || repass === "") {
-      document.getElementById("snackbar").innerHTML = "isi semua field terlebih dahulu";
-      var x = document.getElementById("snackbar");
-      x.className = "show";
-      setTimeout(function() {
-        x.className = x.className.replace("show", "");
-      }, 3000);
+      Application.showSnackbar("isi semua field terlebih dahulu");
     } else if (pass === repass)
       Application.register(name, email, pass);
     else {
-      document.getElementById("snackbar").innerHTML = "password dan repassword tidak sama";
-      var x = document.getElementById("snackbar");
-      x.className = "show";
-      setTimeout(function() {
-        x.className = x.className.replace("show", "");
-      }, 3000);
+      Application.showSnackbar("password dan repassword tidak sama");
     }
   })
 
@@ -45,12 +35,7 @@ var Application = {
     var pass = document.getElementById('txt-password').value;
 
     if (email === "" || pass === "") {
-      document.getElementById("snackbar").innerHTML = "isi semua field terlebih dahulu";
-      var x = document.getElementById("snackbar");
-      x.className = "show";
-      setTimeout(function() {
-        x.className = x.className.replace("show", "");
-      }, 3000);
+      Application.showSnackbar("isi semua field terlebih dahulu");
     } else Application.login(email, pass);
   })
   },
@@ -107,13 +92,7 @@ var Application = {
             console.log("true")
             window.location.replace("./index.html");
           } else {
-
-            document.getElementById("snackbar").innerHTML = "i";
-            var x = document.getElementById("snackbar");
-            x.className = "show";
-            setTimeout(function() {
-              x.className = x.className.replace("show", "");
-            }, 3000);
+            Application.showSnackbar("registrasi gagal");
           }
 
         },
@@ -140,14 +119,19 @@ var Application = {
         })
       },
       success: function(dataObject) {
-        var obj = JSON.parse(dataObject);
-        Application.gEmail = obj.email;
-        Application.gNama = obj.nama
-        if (obj.email === mEmail) {
-          localStorage['gEmail'] = obj.email;
-          localStorage['gNama'] = obj.nama;
-          window.location.replace("./home.html");
-          // $(div).html('<script> setTimeout(function() { window.location = "./home.html"; },10); </script>');
+        console.log(dataObject)
+        if (dataObject == "username or password incorrect") {
+          Application.showSnackbar("login gagal");
+        } else {
+
+          var obj = JSON.parse(dataObject);
+          Application.gEmail = obj.email;
+          Application.gNama = obj.nama
+          if (obj.email === mEmail) {
+            localStorage['gEmail'] = obj.email;
+            localStorage['gNama'] = obj.nama;
+            window.location.replace("./home.html");
+          } 
         }
       },
       complete: function() {
@@ -155,6 +139,16 @@ var Application = {
       }
     })
   },
+
+  showSnackbar: function(message){
+    
+    document.getElementById("snackbar").innerHTML = message;
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function() {
+      x.className = x.className.replace("show", "");
+    }, 3000);
+  }
 
 
 
