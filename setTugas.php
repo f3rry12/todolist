@@ -9,7 +9,7 @@ $link = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
 date_default_timezone_set("Asia/Jakarta");
 if(isset($_POST['matkul'])&& isset($_POST['deskripsi']) && isset($_POST['tenggat']) && isset($_POST['email'])) {
     $matkul=$_POST['matkul'];
-    $deskripsi=$_POST['deskripsi'];
+    //$deskripsi=$_POST['deskripsi'];
     $tenggat=$_POST['tenggat'];
     $email=$_POST['email'];
     try{
