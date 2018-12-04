@@ -1,14 +1,14 @@
 var gEmail;
 var gNama;
-
+var test;
 var Application = {
   initApplication: function() {
-    
+
     $.support.cors = true;
     $.mobile.allowCrossDomainPages = true;
     // Application.initShowPlayer();
     gEmail = localStorage['gEmail'] || null;
-    gNama = localStorage['gNama'] || null;   
+    gNama = localStorage['gNama'] || null;
 
     console.log(gEmail)
     console.log(gNama)
@@ -78,8 +78,12 @@ var Application = {
   //coba-coba
   initShowToDoList: function () {
 		$.ajax({
-			url : 'http://amamipro.site/service_coba.php',
-			type: 'get',
+			url : 'http://amamipro.site/getAktivitas.php',
+			type: 'POST',
+      data:
+      {
+        email: "jowel@pentot.com"
+      },
 			beforeSend:function(){
 				$.mobile.loading('show',{
 					text:'Please wait while retrieving data...',
@@ -87,12 +91,14 @@ var Application = {
 				});
 			},
 			success:function(dataObject){
-				console.log(dataObject);
 				var appendList;
-				console.log(dataObject)
-								for (let i = 0; i < dataObject.length; i++) {
-										appendList = '<li><a href=#page-two?id='+dataObject[i].kolom1+
-																'"target="_self" id="detail-obt" data-namaobt="'+dataObject[i].kolom1+'">'+dataObject[i].kolom2+'</a></li>';
+        var x;
+        var obj = JSON.parse(dataObject);
+        console.log(obj);
+      								for (let i = 0; i < obj.length; i++) {
+                  console.log(obj[i]);
+										appendList = '<li><a href=#page-two?id='+obj[i].tgl+
+																'"target="_self" id="detail-obt" data-namaobt="'+obj[i].tgl+'">'+obj[i].aktivitas+'</a></li>';
 																$('#list-todo').append(appendList);
 																$('#list-todo').listview('refresh');
 								}
@@ -103,8 +109,8 @@ var Application = {
 			}
 		});
 
-  },
-  
+	},
+
   //register
   register: function(mUsername, mEmail, mPassword) {
       console.log(mUsername + mEmail + mPassword)
@@ -167,7 +173,7 @@ var Application = {
             localStorage['gEmail'] = obj.email;
             localStorage['gNama'] = obj.nama;
             window.location.replace("./home.html");
-          } 
+          }
         }
       },
       complete: function() {
@@ -177,7 +183,7 @@ var Application = {
   },
 
   showSnackbar: function(message){
-    
+
     document.getElementById("snackbar").innerHTML = message;
     var x = document.getElementById("snackbar");
     x.className = "show";
@@ -206,4 +212,3 @@ $(document).ready(function() {
 
 // document.getElementById("namauser").innerHTML = gNama;
 // document.getElementById("wellcome").innerHTML = " Selamat datang," + gEmail;
-
