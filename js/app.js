@@ -161,7 +161,7 @@ var Application = {
         })
       })
 
-      $(document).on('pageinit', '#first-page', function() {
+      $(document).on('pageinit', '#FirstPageDaily', function() {
         $.support.cors = true;
         $.mobile.allowCrossDomainPages = true;
         Application.initApplication();
@@ -241,10 +241,11 @@ var Application = {
 
     },
 
-    initBelanja(){
+
       //--------------akhir page daily----------------------------
 
     //--------------page daftar belanja------------------------------------------------
+    initBelanja(){
     //button back
     $(document).on('click', '#backToFirstPageBelanja', function() {
       window.location.replace("#FirstPageBelanja");
@@ -280,7 +281,7 @@ var Application = {
       var mNama = document.getElementById('txt-nama-detail').value;
       var mHarga = document.getElementById('txt-harga-detail').value;
       var mKuan = document.getElementById('txt-kuan-detail').value;
-      
+
       $.ajax({
         url: 'http://amamipro.site/updateBelanjaan.php',
         type: 'POST',
@@ -308,7 +309,7 @@ var Application = {
             console.log("true")
 
             window.location.replace("#FirstPageBelanja");
-            Application.initShowToDoList()
+            Application.initShowDaftarBelanja()
           } else {
             Application.showSnackbar("update gagal");
           }
@@ -342,7 +343,7 @@ var Application = {
             console.log("true")
 
             window.location.replace("#FirstPageBelanja");
-            Application.initShowToDoList()
+            Application.initShowDaftarBelanja()
           } else {
             Application.showSnackbar("delete gagal");
           }
@@ -354,14 +355,14 @@ var Application = {
       })
     })
 
-    $(document).on('pageinit', '#first-page', function() {
+    $(document).on('pageinit', '#FirstPageBelanja', function() {
       $.support.cors = true;
       $.mobile.allowCrossDomainPages = true;
       Application.initApplication();
     })
     },
-    
-  
+
+
 
   initDaftarBelanja: function() {
     $(document).on('click', '#submitBelanjaan', function() {
@@ -420,7 +421,7 @@ var Application = {
         $('#list-todo').empty();
         $('#list-todo').listview('refresh');
         for (let i = 0; i < obj.length; i++) {
-          
+
           console.log('=============== id ' + obj[i].id)
           data = obj;
           appendList = '<li><a href=#detailBelanjaan?id=' + obj[i].id +
@@ -437,6 +438,192 @@ var Application = {
 
   },
   //--------------akhir page belanjaan----------------------------
+
+
+      //--------------page daftar tugas------------------------------------------------
+      initTugass(){
+      //button back
+      $(document).on('click', '#backToFirstPageTugas', function() {
+        window.location.replace("#FirstPageTugas");
+      })
+
+      //untuk data ready
+      $(document).on('pageinit', '#FirstPageTugas', function() {
+        $.support.cors = true;
+        $.mobile.allowCrossDomainPages = true;
+        Application.initShowTugas();
+      })
+
+      //detail daftar tugas button
+      $(document).on('click', '#detail-tugas', function() {
+        id = $(this).data('idListTugas');
+
+        let index = 0;
+        for (let i in data) {
+
+          if (data[i].id == id) {
+            index = i;
+            break;
+          }
+        }
+        document.getElementById("txt-matkul-detail").value = data[index].matkul;
+        document.getElementById("txt-deskripsi-detail").value = data[index].deskripsi;
+        document.getElementById("txt-tenggat-detail").value = data[index].tenggat;
+      })
+
+      //tombol update tugas
+      $(document).on('click', '#updateDaftarTugas', function() {
+        var mMatkul = document.getElementById('txt-matkul-detail').value;
+        var mDeskripsi = document.getElementById('txt-deskripsi-detail').value;
+        var mTenggat = document.getElementById('txt-tenggat-detail').value;
+
+        $.ajax({
+          url: 'http://amamipro.site/updateTugas.php',
+          type: 'POST',
+          data: {
+            id: id,
+            email: gEmail,
+            matkul: mMatkul,
+            deskripsi: mDeskripsi,
+            tenggat: mTenggat
+          },
+          beforeSend: function() {
+            $.mobile.loading('show', {
+              text: 'Loading',
+              textVisible: true
+            })
+          },
+          success: function(dataObject) {
+
+            if (dataObject == "Success") {
+
+              window.location.replace("#FirstPageTugas");
+              Application.initShowTugas()
+            } else {
+              Application.showSnackbar("update gagal");
+            }
+          },
+          complete: function() {
+            $.mobile.loading('hide');
+            $('#list-todo').listview("refresh");
+          }
+        })
+      })
+
+      //delete tugas
+      $(document).on('click', '#DeleteDaftarTugas', function() {
+        console.log("delete" + id)
+        $.ajax({
+          url: 'http://amamipro.site/deleteTugas.php',
+          type: 'POST',
+          data: {
+            id: id
+          },
+          beforeSend: function() {
+            $.mobile.loading('show', {
+              text: 'Loading',
+              textVisible: true
+            })
+          },
+          success: function(dataObject) {
+            console.log(dataObject)
+            if (dataObject == "Success") {
+              console.log("true")
+
+              window.location.replace("#FirstPageTugas");
+              Application.initShowTugas()
+            } else {
+              Application.showSnackbar("delete gagal");
+            }
+          },
+          complete: function() {
+            $.mobile.loading('hide');
+            $('#list-todo').listview("refresh");
+          }
+        })
+      })
+
+      $(document).on('pageinit', '#FirstPageTugas', function() {
+        $.support.cors = true;
+        $.mobile.allowCrossDomainPages = true;
+        Application.initApplication();
+      })
+      },
+
+
+
+    initTugas: function() {
+      $(document).on('click', '#submitTugas', function() {
+        console.log(gEmail);
+        var mMatkul = document.getElementById('txt-matkul').value;
+        var mDeskripsi = document.getElementById('txt-deskripsi').value;
+        var mTenggat = document.getElementById('txt-tenggat').value;
+        $.ajax({
+          url: 'http://amamipro.site/setTugas.php',
+          type: 'POST',
+          data: {
+            email: gEmail,
+            matkul: mMatkul,
+            deskripsi: mDeskripsi,
+            tenggat: mTenggat
+          },
+          beforeSend: function() {
+            $.mobile.loading('show', {
+              text: 'Loading',
+              textVisible: true
+            })
+          },
+          success: function(dataObject) {
+            if (dataObject == "Success") {
+              window.location.replace("#FirstPageTugas");
+              Application.initShowTugas()
+            } else {
+              Application.showSnackbar("Tambah daftar tugas gagal");
+            }
+          },
+          complete: function() {
+            $.mobile.loading('hide');
+          }
+        })
+      })
+    },
+
+    initShowTugas: function() {
+      $.ajax({
+        url: 'http://amamipro.site/getTugas.php',
+        type: 'POST',
+        data: {
+          email: gEmail
+        },
+        beforeSend: function() {
+          $.mobile.loading('show', {
+            text: 'Please wait while retrieving data...',
+            textVisible: true
+          });
+        },
+        success: function(dataObject) {
+          var appendList;
+          var x;
+          var obj = JSON.parse(dataObject);
+          $('#list-todo').empty();
+          $('#list-todo').listview('refresh');
+          for (let i = 0; i < obj.length; i++) {
+
+            data = obj;
+            appendList = '<li><a href=#detailTugas?id=' + obj[i].id +
+              '"target="_self" id="detail-tugas" data-idListTugas="' + obj[i].id + '"><h2>' + obj[i].tenggat + '</h2><p>' + obj[i].matkul + '</p></a></li>';
+            $('#list-todo').append(appendList);
+            $('#list-todo').listview('refresh');
+          }
+        },
+        complete: function() {
+          $.mobile.loading('hide');
+          $('#list-todo').listview("refresh");
+        }
+      });
+
+    },
+    //--------------akhir page tugas----------------------------
 
   //register pertukaran data
   register: function(mUsername, mEmail, mPassword) {
