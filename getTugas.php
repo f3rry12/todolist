@@ -1,5 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin: *");
+header('Content-Type: application/json');
 $dbhost = 'localhost';
 $dbname = 'u420353749_tdl';
 $dbusername = 'u420353749_ppk';

@@ -7,9 +7,10 @@ $dbpassword = 'rahasia';
 //$conn = mysqli_connect(HOST,USER,PASS,DB) or die('Unable to Connect');
 $link = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
 date_default_timezone_set("Asia/Jakarta");
-if(isset($_POST['tgl'])&& isset($_POST['aktivitas'])&& isset($_POST['email'])&& isset($_POST['id'])){
-    $tgl=$_POST['tgl'];
-    $aktivitas=$_POST['aktivitas'];
+if(isset($_POST['nama'])&& isset($_POST['harga'])&& isset($_POST['kuantitas'])&& isset($_POST['id']) && isset($_POST['email'])){
+    $nama=$_POST['nama'];
+    $harga=$_POST['harga'];
+    $kuantitas=$_POST['kuantitas'];
     $email=$_POST['email'];
     $id=$_POST['id'];
     try{
