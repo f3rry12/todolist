@@ -3,19 +3,19 @@
 
 <head>
   <title>ToDoList</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
   <link rel="stylesheet" href="css/ori.css" />
+  <link rel="stylesheet" href="css/snackbar.css" />
   <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
   <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-
 </head>
 
 <body>
 <!-- Start of first page -->
-<div data-role="page" id="page-one">
+<div data-role="page" id="FirstPage">
 	<div data-role="header" data-position="fixed">
 		<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
 			<a data-icon="bars" data-iconpos="notext" data-role="button" href="#mypanel1">Menu</a>
@@ -26,7 +26,7 @@
 	<div data-role="panel" id="mypanel1" data-display="overlay">
     <h1 id="namauser">nama</h1>
 		<ul data-role="listview">
-			<li><a href="home.html">Beranda</a></li>
+			<li><a id="clickHome">Beranda</a></li>
 			<li><a href="daily.html">Daily</a></li>
 			<li><a href="tugas.html">Tugas</a></li>
       <li><a href="belanja.html">Daftar Belanja</a></li>
@@ -34,41 +34,74 @@
 	</div>
 	<!-- /panel -->
 
+<!-- footer untuk add -->
+  <a href="#pageInsertDaily">
+    <div data-role="footer" data-position="fixed" id="tambahDaftarBelanja">
+        <h2>Tambah daftar belanjaan</h2>
+    </div>
+  </a>
 
 
-    <div role="main" class="ui-content">
-        <ul id="list-todo" data-role="listview" data-inset="true" data-filter="true"></ul>
-    </div><!-- /content -->
+  <div role="main" class="ui-content">
+      <ul id="list-todo" data-role="listview" data-inset="true" data-filter="true"></ul>
+  </div><!-- /content -->
 </div>
 
-<!-- Start of second page -->
-<div data-role="page" id="page-two" data-theme="b">
-    <div data-role="header">
-        <h1>Detail</h1>
-    </div><!-- /header -->
+<!-- Start of second page buat baru-->
+<div data-role="page" id="pageInsertBelanja" data-theme="a">
+    <img src="img/back.png" id="backToFirstPage" alt="back" style="width:40px; margin:10px;"></img>
+      <div role="main" class="ui-content">
+        <h4>Tambah Daftar Belanja</h4>
+        <label>Nama barang</label>
+        <input type="text" name="txt-nama-detail" id="txt-nama" value=""/>
+        <label>Harga</label>
+        <input type="text" name="txt-harga-detail" id="txt-harga" value=""/>
+        <label>Kuantitas</label>
+        <input type="text" name="txt-kuan-detail" id="txt-kuan" value=""/>
+        <div data-position-to="window" id="submitBelanjaan" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" style="margin-top : 30px;">Submit</div>
+        <div data-role="popup" id="dlg-sign-up-sent" data-dismissible="false" style="max-width:400px;">
+          <div data-role="header">
+            <h1>Almost done...</h1>
+          </div>
+        </div>
+      </div><!-- /content -->
+      <div id="snackbar">Some text some message..</div>
 
-    <div role="main" class="ui-content">
-        <table data-role="table" data-mode="reflow" class="ul-responsive" id="table-detailObt">
-            <thead>
-                <tr>
-                    <th data-priority="1">Nama</th>
-                    <th data-priority="2">Gejala</th>
-                    <th data-priority="3">Jenis Obat</th>
-                </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
-        <a href="#page-one" class="ui-btn" onclick="back()">Kembali</a>
-    </div><!-- /content -->
 </div><!-- /page -->
 
+<!-- Start of third page buat edit dan detail-->
+<div data-role="page" id="detailBelanjaan" data-theme="a">
+    <img src="img/back.png" id="backToFirstPage" alt="back" style="width:40px; margin:10px;"></img>
+    <div role="main" class="ui-content">
+      <h4>Detail Daftar Belanja</h4>
+      <label>Nama barang</label>
+      <input type="text" name="txt-nama" id="txt-nama-detail" value=""/>
+      <label>Harga</label>
+      <input type="text" name="txt-harga" id="txt-harga-detail" value=""/>
+      <label>Kuantitas</label>
+      <input type="text" name="txt-kuan" id="txt-kuan" value=""/>
+      <div data-position-to="window" id="updateDaftarBelanja" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" style="margin-top : 30px;">Update</div>
+      <div data-position-to="window" id="DeleteDaftarBelanja" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" style="margin-top : 30px;">Delete</div>
+      <div data-role="popup" id="dlg-sign-up-sent" data-dismissible="false" style="max-width:400px;">
+        <div data-role="header">
+          <h1>Almost done...</h1>
+        </div>
+      </div>
+    </div><!-- /content -->
+    <div id="snackbar">Some text some message..</div>
 
 
+</div><!-- /page -->
 
   <script src="js/app.js" type="text/javascript"></script>
-  <script>Application.initApplication()</script>
+  <script>
+    Application.initApplication()
+  </script>
+
+  <script>
+    Application.initShowDaftarBelanja()
+    Application.initDaftarBelanja()
+  </script>
 </body>
 
 </html>

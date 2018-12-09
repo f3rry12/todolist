@@ -15,7 +15,7 @@
 
 <body>
 <!-- Start of first page -->
-<div data-role="page" id="homeDailyTodo">
+<div data-role="page" id="FirstPage">
 	<div data-role="header" data-position="fixed">
 		<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
 			<a data-icon="bars" data-iconpos="notext" data-role="button" href="#mypanel1">Menu</a>
@@ -34,6 +34,7 @@
 	</div>
 	<!-- /panel -->
 
+<!-- footer untuk add -->
   <a href="#pageInsertDaily">
     <div data-role="footer" data-position="fixed" id="tambahDailyTodo">
         <h2>Tambah Daily Todo</h2>
@@ -46,15 +47,15 @@
   </div><!-- /content -->
 </div>
 
-<!-- Start of second page  buat detail-->
+<!-- Start of second page  buat baru-->
 <div data-role="page" id="pageInsertDaily" data-theme="a">
-    <img src="img/back.png" id="backToDailyHome" alt="back" style="width:40px; margin:10px;"></img>
+    <img src="img/back.png" id="backToFirstPage" alt="back" style="width:40px; margin:10px;"></img>
       <div role="main" class="ui-content">
         <h4>Tambah Daily Todo</h4>
-        <label for="txt-last-name">Aktivitas</label>
+        <label>Aktivitas</label>
         <input type="text" name="txt-todo-detail" id="txt-todo" value=""/>
-        <label for="txt-email">Dilakukan Tanggal</label>
-        <input type="text" name="txt-email-detail" id="txt-tgl" value=""/>
+        <label>Dilakukan Tanggal</label>
+        <input type="text" name="txt-tgl-detail" id="txt-tgl" value=""/>
         <div data-position-to="window" id="submitDailyTodo" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" style="margin-top : 30px;">Submit</div>
         <div data-role="popup" id="dlg-sign-up-sent" data-dismissible="false" style="max-width:400px;">
           <div data-role="header">
@@ -63,17 +64,17 @@
         </div>
       </div><!-- /content -->
       <div id="snackbar">Some text some message..</div>
-    
+
 </div><!-- /page -->
 
-<!-- Start of third page buat edit-->
+<!-- Start of third page buat edit dan detail-->
 <div data-role="page" id="detailTodoDaily" data-theme="a">
-    <img src="img/back.png" id="backToDailyHome" alt="back" style="width:40px; margin:10px;"></img>
+    <img src="img/back.png" id="backToFirstPage" alt="back" style="width:40px; margin:10px;"></img>
     <div role="main" class="ui-content">
       <h4>Detail Daily Todo</h4>
-      <label for="txt-last-name">Aktivitas</label>
+      <label>Aktivitas</label>
       <input type="text" name="txt-todo" id="txt-todo-detail" value=""/>
-      <label for="txt-email">Dilakukan Tanggal</label>
+      <label>Dilakukan Tanggal</label>
       <input type="text" name="txt-email" id="txt-tgl-detail" value=""/>
       <div data-position-to="window" id="updateDailyTodo" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" style="margin-top : 30px;">Update</div>
       <div data-position-to="window" id="DelateDailyTodo" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" style="margin-top : 30px;">Delete</div>
@@ -84,8 +85,8 @@
       </div>
     </div><!-- /content -->
     <div id="snackbar">Some text some message..</div>
-  
-    
+
+
 </div><!-- /page -->
 
   <script src="js/app.js" type="text/javascript"></script>
