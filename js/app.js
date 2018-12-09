@@ -240,7 +240,9 @@ var Application = {
       });
 
     },
-    //--------------akhir page daily----------------------------
+
+    initBelanja(){
+      //--------------akhir page daily----------------------------
 
     //--------------page daftar belanja------------------------------------------------
     //button back
@@ -350,7 +352,9 @@ var Application = {
       $.mobile.allowCrossDomainPages = true;
       Application.initApplication();
     })
-  },
+    },
+    
+  
 
   initDaftarBelanja: function() {
     $(document).on('click', '#submitBelanjaan', function() {
