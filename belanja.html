@@ -31,7 +31,9 @@
 			<li><a href="tugas.html">Tugas</a></li>
       <li><a href="belanja.html">Daftar Belanja</a></li>
 		</ul>
-	</div>
+  </div>
+  
+  <div id="snackbar">Some text some message..</div>
 	<!-- /panel -->
 
 <!-- footer untuk add -->
@@ -53,11 +55,11 @@
       <div role="main" class="ui-content">
         <h4>Tambah Daftar Belanja</h4>
         <label>Nama barang</label>
-        <input type="text" name="txt-nama-detail" id="txt-nama" value=""/>
+        <input type="text" name="txt-nama-detail" id="txt-nama-detail" value=""/>
         <label>Harga</label>
-        <input type="text" name="txt-harga-detail" id="txt-harga" value=""/>
+        <input type="text" name="txt-harga-detail" id="txt-harga-detail" value=""/>
         <label>Kuantitas</label>
-        <input type="text" name="txt-kuan-detail" id="txt-kuan" value=""/>
+        <input type="text" name="txt-kuan-detail" id="txt-kuan-detail" value=""/>
         <div data-position-to="window" id="submitBelanjaan" class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" style="margin-top : 30px;">Submit</div>
         <div data-role="popup" id="dlg-sign-up-sent" data-dismissible="false" style="max-width:400px;">
           <div data-role="header">
@@ -101,6 +103,7 @@
   <script>
     Application.initShowDaftarBelanja()
     Application.initDaftarBelanja()
+    Application.initBelanja()
   </script>
 </body>
 

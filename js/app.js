@@ -259,7 +259,8 @@ var Application = {
 
     //detail daftar belanja button
     $(document).on('click', '#detail-belanja', function() {
-      id = $(this).data('idList');
+      id = $(this).data('idListBelanja');
+      console.log('=============== id ' + $(this).data('idListBelanja'))
 
       let index = 0;
       for (let i in data) {
@@ -279,6 +280,7 @@ var Application = {
       var mNama = document.getElementById('txt-nama-detail').value;
       var mHarga = document.getElementById('txt-harga-detail').value;
       var mKuan = document.getElementById('txt-kuan-detail').value;
+      
       $.ajax({
         url: 'http://amamipro.site/updateBelanjaan.php',
         type: 'POST',
@@ -297,6 +299,11 @@ var Application = {
         },
         success: function(dataObject) {
           console.log(dataObject)
+          console.log(gEmail)
+          console.log(id)
+          console.log(mNama)
+          console.log(mHarga)
+          console.log(mKuan)
           if (dataObject == "Success") {
             console.log("true")
 
@@ -413,9 +420,11 @@ var Application = {
         $('#list-todo').empty();
         $('#list-todo').listview('refresh');
         for (let i = 0; i < obj.length; i++) {
+          
+          console.log('=============== id ' + obj[i].id)
           data = obj;
           appendList = '<li><a href=#detailBelanjaan?id=' + obj[i].id +
-            '"target="_self" id="detail-belanja" data-idList="' + obj[i].id + '"><h2>' + obj[i].nama + '</h2><p>' + obj[i].kuantitas + ' buah</p></a></li>';
+            '"target="_self" id="detail-belanja" data-idListBelanja="' + obj[i].id + '"><h2>' + obj[i].nama + '</h2><p>' + obj[i].kuantitas + ' buah</p></a></li>';
           $('#list-todo').append(appendList);
           $('#list-todo').listview('refresh');
         }
