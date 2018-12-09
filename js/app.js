@@ -53,20 +53,20 @@ var Application = {
         window.location.replace("./home.html");
       })
 
-      $(document).on('click', '#backToFirstPage', function() {
-        window.location.replace("#FirstPage");
+//--------------page daily------------------------------------------------
+      //button back
+      $(document).on('click', '#backToFirstPageDaily', function() {
+        window.location.replace("#FirstPageDaily");
       })
 
-
-      //untuk data ready di semua page
-      $(document).on('pageinit', '#FirstPage', function() {
+      //untuk data ready
+      $(document).on('pageinit', '#FirstPageDaily', function() {
         $.support.cors = true;
         $.mobile.allowCrossDomainPages = true;
         Application.initShowToDoList();
       })
 
 
-      //--------------page daily------------------------------------------------
       //detail daily button
       $(document).on('click', '#detail-daily', function() {
         id = $(this).data('idList');
@@ -114,7 +114,7 @@ var Application = {
             if (dataObject == "Success") {
               console.log("true")
 
-              window.location.replace("#FirstPage");
+              window.location.replace("#FirstPageDaily");
               Application.initShowToDoList()
             } else {
               Application.showSnackbar("update gagal");
@@ -148,7 +148,7 @@ var Application = {
             if (dataObject == "Success") {
               console.log("true")
 
-              window.location.replace("#FirstPage");
+              window.location.replace("#FirstPageDaily");
               Application.initShowToDoList()
             } else {
               Application.showSnackbar("delete gagal");
@@ -190,7 +190,7 @@ var Application = {
           success: function(dataObject) {
             console.log(dataObject)
             if (dataObject == "Success") {
-              window.location.replace("#FirstPage");
+              window.location.replace("#FirstPageDaily");
               Application.initShowToDoList()
             } else {
               Application.showSnackbar("Tambah daily todo gagal");
@@ -243,6 +243,18 @@ var Application = {
     //--------------akhir page daily----------------------------
 
     //--------------page daftar belanja------------------------------------------------
+    //button back
+    $(document).on('click', '#backToFirstPageBelanja', function() {
+      window.location.replace("#FirstPageBelanja");
+    })
+
+    //untuk data ready
+    $(document).on('pageinit', '#FirstPageBelanja', function() {
+      $.support.cors = true;
+      $.mobile.allowCrossDomainPages = true;
+      Application.initShowDaftarBelanja();
+    })
+
     //detail daftar belanja button
     $(document).on('click', '#detail-belanja', function() {
       id = $(this).data('idList');
@@ -286,7 +298,7 @@ var Application = {
           if (dataObject == "Success") {
             console.log("true")
 
-            window.location.replace("#FirstPage");
+            window.location.replace("#FirstPageBelanja");
             Application.initShowToDoList()
           } else {
             Application.showSnackbar("update gagal");
@@ -320,7 +332,7 @@ var Application = {
           if (dataObject == "Success") {
             console.log("true")
 
-            window.location.replace("#FirstPage");
+            window.location.replace("#FirstPageBelanja");
             Application.initShowToDoList()
           } else {
             Application.showSnackbar("delete gagal");
@@ -343,9 +355,9 @@ var Application = {
   initDaftarBelanja: function() {
     $(document).on('click', '#submitBelanjaan', function() {
       console.log(gEmail);
-      var mNama = document.getElementById('txt-nama-detail').value;
-      var mHarga = document.getElementById('txt-harga-detail').value;
-      var mKuan = document.getElementById('txt-kuan-detail').value;
+      var mNama = document.getElementById('txt-nama').value;
+      var mHarga = document.getElementById('txt-harga').value;
+      var mKuan = document.getElementById('txt-kuan').value;
       $.ajax({
         url: 'http://amamipro.site/setBelanjaan.php',
         type: 'POST',
@@ -364,7 +376,7 @@ var Application = {
         success: function(dataObject) {
           console.log(dataObject)
           if (dataObject == "Success") {
-            window.location.replace("#FirstPage");
+            window.location.replace("#FirstPageBelanja");
             Application.initShowDaftarBelanja()
           } else {
             Application.showSnackbar("Tambah daftar belanja gagal");
